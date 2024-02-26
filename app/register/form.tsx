@@ -90,7 +90,7 @@ export const RegisterForm = () => {
                 />
             </div>
             <div className='grid w-full items-center gap-1.5'>
-                <Label htmlFor="phone number">Phone Number</Label>
+                <Label htmlFor="phone number">Phone Number <span className='text-xs ml-2 text-red-600'>*Please add country code</span></Label>
                 <Input
                     required
                     value={phoneNumber}
