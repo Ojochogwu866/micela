@@ -104,7 +104,7 @@ export async function sendMoney(payments: Payment[]): Promise<any> {
 
 export async function sendMoneyViaEmail(email: string, valueInUSD: string): Promise<any> {
   try {
-    const res = await fetch(`http://localhost:8080/api/v1/send-payment`, {
+    const res = await fetch(`https://chi-api.onrender.com/api/v1/send-payment`, {
       method: 'POST',
             headers: {
             'accept': 'application/json',
