@@ -1,4 +1,6 @@
 'use client'
+
+
 import { SendMoney } from '../send';
 import { RecieveMoney } from '../recieve';
 import { RecentTransactions } from '../recent';
@@ -20,7 +22,7 @@ export default function Dashboard() {
 
     return (
         <>
-            <div className='w-full h-[200px] rounded-md flex flex-col items-start justify-center shadow-md p-4'>
+            <div className='w-full h-[400px] md:h-[200px] rounded-md flex flex-col items-start justify-center shadow-md p-4'>
                 
                 <div className='flex justify-around gap-10 items-center md:flex-row flex-col'>
                 <span className='font-bold text-5xl mt-4'>
