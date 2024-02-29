@@ -101,6 +101,7 @@ const handleSendMoneyViaEmail = async (event: React.FormEvent<HTMLFormElement>) 
   event.preventDefault();
   try {
     const response = await sendMoneyViaEmail(email, valueInUSD); 
+    setAlertMessage('Money sent successfully!');
     console.log(response);
     setTimeout(() => {
       setEmail('');
