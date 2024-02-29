@@ -71,7 +71,7 @@ const handleSendMoney = async (event: React.FormEvent<HTMLFormElement>) => {
         valueInUSD: parseInt(valueInUSD),
         redeemData: {
             walletID: walletID,
-            interledgerWalletAddress: 'zedeki',
+            interledgerWalletAddress: 'zedeki28',
         },
     }];
 
