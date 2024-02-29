@@ -145,7 +145,7 @@ return (
          <h6 className=' text-base font-medium'>Send Money</h6>
             <div className="flex gap-4 my-3">
               <div  onClick={() => handleTabChange('otherUsers')} className={`tab ${tab === 'otherUsers w-full' ? 'border-b-[2px] delay-75 translate-x-3 border-black pb-2' : ''} w-full flex justify-start cursor-pointer items-center`}>Send to Chimoney Users</div>
-              <div  onClick={() => handleTabChange('viaEmail')} className={`tab ${tab === 'viaEmail w-full' ? 'border-b-[2px] delay-75 translate-x-3 border-black pb-2' : ''} w-full flex justify-start cursor-pointer items-center`}>Send via Email</div>
+              <div  onClick={() => handleTabChange('viaEmail')} className={`tab ${tab === 'viaEmail w-full' ? 'border-b-[2px] delay-75 translate-x-3 border-black pb-2' : ''} w-full flex justify-start cursor-pointer items-center`}>Send to Non Users</div>
             </div>
             {alertMessage && (
                 <Alert>
