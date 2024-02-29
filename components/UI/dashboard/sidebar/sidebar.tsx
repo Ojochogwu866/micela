@@ -42,7 +42,7 @@ interface MenuToggleButtonProps {
 
 function MenuToggleButton({ onClick }: MenuToggleButtonProps) {
   return (
-    <div onClick={onClick} className='fixed z-50'>
+    <div onClick={onClick} className='fixed top-6 z-50'>
       <MenuIcon />
     </div>
   );
@@ -131,7 +131,8 @@ export default function Sidebar() {
           {menuItems.map((cat, index) => (
             <li className='' key={index}>
               {cat.list && (
-                <span className='py-8 w-full flex flex-col'>
+                <span onClick={() => setIsMenuToggle(!isMenuToggled)} className='py-8 w-full flex flex-col'>
+                  
                   {cat.list.map((item) => (
                     
                     <MenuLink
