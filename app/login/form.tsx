@@ -16,7 +16,7 @@ export const LoginForm = () => {
         e.preventDefault();
         setIsLoading(true);
         try {
-            const res = await fetch('https://chi-api.onrender.com/api/v1/login', {
+            const res = await fetch('https://chi-api.vercel.app/api/v1/login', {
                 method: 'POST',
                 body: JSON.stringify({
                     email,

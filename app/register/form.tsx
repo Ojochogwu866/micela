@@ -21,7 +21,7 @@ export const RegisterForm = () => {
         setIsLoading(true);
 
     try {
-        const res = await fetch('https://chi-api.onrender.com/api/v1/register', {
+        const res = await fetch('https://chi-api.vercel.app/api/v1/register', {
             method: 'POST',
             body: JSON.stringify({
                 firstName,
