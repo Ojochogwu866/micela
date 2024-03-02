@@ -96,7 +96,7 @@ export async function sendMoney(payments: Payment[], subAccount: string): Promis
   }
 }
 
-export async function recieveMoney(payerEmail: string, valueInUSD: string): Promise<any> {
+export async function recieveMoney(payerEmail: string, valueInUSD: string, subAccount: string): Promise<any> {
   try {
     const apiKey = process.env.NEXT_PUBLIC_CHIMONEY_API_KEY;
     if (!apiKey) {
@@ -111,7 +111,8 @@ export async function recieveMoney(payerEmail: string, valueInUSD: string): Prom
      },
       body: JSON.stringify({
         payerEmail,
-        valueInUSD
+        valueInUSD,
+        subAccount
       }),
     });
 
@@ -180,6 +181,36 @@ export async function sendMoneyViaEmail(payments: PayWithEmail[], subAccount: st
       body: JSON.stringify({
         chimoneys: payments,
         turnOffNotification: false,
+        subAccount,
+      }),
+    });
+
+    if (!res.ok) {
+      throw new Error('Failed to send money');
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error('Error sending money:', error);
+    throw new Error('Failed to send money');
+  }
+}
+
+export async function verifyMoney(id: string, subAccount: string): Promise<any> {
+  try {
+    const apiKey = process.env.NEXT_PUBLIC_CHIMONEY_API_KEY;
+    if (!apiKey) {
+            throw new Error('Chi-Money API key not provided');
+    }
+    const res = await fetch(`${CHIMONEY_API_BASE_URL}/payment/verify`, {
+    method: 'POST',
+            headers: {
+            'accept': 'application/json',
+            'content-type': 'application/json',
+            'X-API-KEY': apiKey
+     },
+      body: JSON.stringify({
+        id,
         subAccount,
       }),
     });

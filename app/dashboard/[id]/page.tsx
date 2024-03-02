@@ -2,6 +2,7 @@
 
 import { SendMoney } from '../send';
 import { RecieveMoney } from '../recieve';
+import { VerifyMoney } from '../verify';
 import { RecentTransactions } from '../recent';
 import { useAppContext } from '@/context';
 
@@ -39,6 +40,7 @@ export default function Dashboard() {
                 <RecieveMoney />
                 <RecentTransactions />
             </div>
+            <VerifyMoney />
         </>
     );
 }

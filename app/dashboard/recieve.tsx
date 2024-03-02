@@ -3,8 +3,10 @@ import { Input } from '@/components/UI/input';
 import { Button } from '@/components/UI/button';
 import { recieveMoney } from '@/lib/transactions';
 import { Alert } from '@/components/UI/alert';
+import { useAppContext } from '@/context';
 
 export const RecieveMoney = () => {
+    const { userData } = useAppContext();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [valueInUSD, setValueInUSD] = useState('');
     const [payerEmail, setEmail] = useState('');
@@ -15,7 +17,8 @@ export const RecieveMoney = () => {
         setIsLoading(true);
         event.preventDefault();
   try {
-    const response = await recieveMoney(payerEmail, valueInUSD); 
+    const subAccount = userData?.id || '';
+    const response = await recieveMoney(payerEmail, valueInUSD, subAccount); 
     setAlertMessage('Requets sent successfully!');
     console.log(response);
     setTimeout(() => {
@@ -32,6 +35,7 @@ export const RecieveMoney = () => {
 };
 
     return(
+        
         <div className='flex md:w-3/5 w-full gap-8 h-[300px] bg-slate-200
          border-[1px] border-[#680b783f] justify-between rounded-md items-center p-5 mt-10'>
             <div className='space-y-6 w-full'>
