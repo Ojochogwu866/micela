@@ -7,7 +7,6 @@ import { verifyMoney } from '@/lib/transactions';
 
 export const VerifyMoney = () => {
     const { userData } = useAppContext();
-
     const [id, setId] = useState('');
     const [alertMessage, setAlertMessage] = useState('');
     const [isLoading, setIsLoading] = useState(false);

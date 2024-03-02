@@ -127,35 +127,6 @@ export async function recieveMoney(payerEmail: string, valueInUSD: string, subAc
   }
 }
 
-/*
-*types Definition for payload
-*/
-// export async function sendMoneyViaEmail(email: string, valueInUSD: string, subAccount: string): Promise<any> {
-//   try {
-//     const res = await fetch(`https://chi-api.vercel.app/api/v1/send-payment`, {
-//       method: 'POST',
-//             headers: {
-//             'accept': 'application/json',
-//             'content-type': 'application/json',
-//      },
-//       body: JSON.stringify({
-//                     email,
-//                     valueInUSD,
-//                     subAccount
-//       }),
-//     });
-
-//     if (!res.ok) {
-//       throw new Error('Failed to send money');
-//     }
-
-//     return res.json();
-//   } catch (error) {
-//     console.error('Error sending money:', error);
-//     throw new Error('Failed to send money');
-//   }
-// }
-
 interface PayWithEmail {
     email: string;
     valueInUSD: number;
