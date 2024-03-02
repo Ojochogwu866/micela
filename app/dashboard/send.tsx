@@ -179,15 +179,16 @@ return (
                     value={searchQuery}
                     onChange={handleSearchInputChange}
                 />
+                    <ul>
                     {dropdownVisible && searchResults.map((result, index) => (
-                      <ul className="max-h-[400px] overflow-y-scroll w-full bg-white p-5 relative" key={index}>
+                      
                         <li className='text-sm cursor-pointer w-full h-[46px] bg-gray-100  rounded-md p-2  font-normal' key={index}>
                             <div onClick={() => handleDropdownItemClick(result)}>
                                 {result.email || result.phone}
                             </div>
                         </li>
-                        </ul>
                     ))}
+                </ul>
                 </div>
                 <Input
                 placeholder='Amount'
