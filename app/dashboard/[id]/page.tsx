@@ -11,9 +11,15 @@ export default function Dashboard() {
     let flexibleBalance = 0;
     if (userData && userData.wallets) {
         const chiWallet = userData.wallets.find(wallet => wallet.type === 'chi');
-        if (chiWallet && chiWallet.transactions && chiWallet.transactions.length > 0) {
-            const lastTransaction = chiWallet.transactions[chiWallet.transactions.length - 1];
-            flexibleBalance = lastTransaction.newBalance;
+        if (chiWallet && chiWallet.transactions) {
+            flexibleBalance = chiWallet.transactions.reduce((balance, transaction) => {
+                if (transaction.amount < 0) {
+                    balance += transaction.amount;
+                } else {
+                    balance += transaction.amount;
+                }
+                return balance;
+            }, chiWallet.balance); 
         }
     }
 

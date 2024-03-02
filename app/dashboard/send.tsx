@@ -6,8 +6,10 @@ import { searchUsers, sendMoney, sendMoneyViaEmail } from '@/lib/transactions';
 import { Alert } from '@/components/UI/alert';
 import { useAppContext } from '@/context';
 
+
 interface Wallet {
-  id: string;
+    id: string;
+    type: string; 
 }
 
 interface User {
@@ -67,7 +69,8 @@ const handleSendMoney = async (event: React.FormEvent<HTMLFormElement>) => {
   setIsLoading(true);
   try {
     const user = searchResults[0]; 
-    const walletID = user?.wallets?.[0]?.id || '';
+    const chiWallet = user?.wallets?.find(wallet => wallet.type === 'chi');
+    const walletID = chiWallet?.id || '';
     const subAccount = userData?.id || '';
     const payments: Payment[] = [{
         email: user?.email || '',
