@@ -16,10 +16,10 @@ export const RecieveMoney = () => {
         event.preventDefault();
   try {
     const response = await recieveMoney(payerEmail, valueInUSD); 
-    setAlertMessage('Money sent successfully!');
+    setAlertMessage('Requets sent successfully!');
     console.log(response);
     setTimeout(() => {
-        setAlertMessage('Money sent successfully!');        
+        setAlertMessage('Request sent successfully!');        
         setEmail('');
         setValueInUSD('');
         setIsModalOpen(false);

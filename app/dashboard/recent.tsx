@@ -14,9 +14,10 @@ export const RecentTransactions = () => {
                         {wallet.transactions && 
                           wallet.transactions.map((transaction, transactionIndex) => (
                             <p key={transactionIndex} 
-                            className='text-sm font-medium space-y-4'>
-                                {transaction.amount} Received on 
-                                {new Date(transaction.meta.date._seconds * 1000).toLocaleString()}
+                            className='text-sm font-medium flex justify-start items-center gap-2'>
+                                <span>{transaction.amount} USD</span>
+                                <span>{transaction.amount > 0 ? 'Received' : 'Sent'}</span>
+                                <span>{new Date(transaction.meta.date._seconds * 1000).toLocaleString()}</span>
                             </p>
                         ))}
                     </div>
