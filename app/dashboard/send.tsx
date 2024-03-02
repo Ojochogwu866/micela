@@ -29,6 +29,14 @@ interface Payment {
   };
 }
 
+interface PayEmail {
+  email: string;
+  valueInUSD: number;
+    redeemData: {
+    walletID: string;
+    interledgerWalletAddress: string;
+  };
+}
 export const SendMoney = () => {
   const { userData } = useAppContext();
   const [tab, setTab] = useState('otherUsers');
@@ -106,7 +114,16 @@ const handleSendMoneyViaEmail = async (event: React.FormEvent<HTMLFormElement>) 
   setIsLoading(true);
   event.preventDefault();
   try {
-    const response = await sendMoneyViaEmail(email, valueInUSD); 
+    const subAccount = userData?.id || '';
+    const payWithEmail: PayEmail[] = [{
+      email: email,
+      valueInUSD: parseInt(valueInUSD),
+        redeemData: {
+            walletID: "",
+            interledgerWalletAddress: 'zedeki28',
+        },
+    }]
+    const response = await sendMoneyViaEmail(payWithEmail, subAccount ); 
     setAlertMessage('Money sent successfully!');
     console.log(response);
     setTimeout(() => {

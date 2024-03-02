@@ -65,8 +65,6 @@ interface Payment {
  * @param payments 
  * @returns 
  */
-
-
 export async function sendMoney(payments: Payment[], subAccount: string): Promise<any> {
   try {
     const apiKey = process.env.NEXT_PUBLIC_CHIMONEY_API_KEY;
@@ -82,7 +80,7 @@ export async function sendMoney(payments: Payment[], subAccount: string): Promis
      },
       body: JSON.stringify({
         chimoneys: payments,
-        turnOffNotification: true,
+        turnOffNotification: false,
         subAccount,
       }),
     });
@@ -131,18 +129,58 @@ export async function recieveMoney(payerEmail: string, valueInUSD: string): Prom
 /*
 *types Definition for payload
 */
+// export async function sendMoneyViaEmail(email: string, valueInUSD: string, subAccount: string): Promise<any> {
+//   try {
+//     const res = await fetch(`https://chi-api.vercel.app/api/v1/send-payment`, {
+//       method: 'POST',
+//             headers: {
+//             'accept': 'application/json',
+//             'content-type': 'application/json',
+//      },
+//       body: JSON.stringify({
+//                     email,
+//                     valueInUSD,
+//                     subAccount
+//       }),
+//     });
 
-export async function sendMoneyViaEmail(email: string, valueInUSD: string): Promise<any> {
+//     if (!res.ok) {
+//       throw new Error('Failed to send money');
+//     }
+
+//     return res.json();
+//   } catch (error) {
+//     console.error('Error sending money:', error);
+//     throw new Error('Failed to send money');
+//   }
+// }
+
+interface PayWithEmail {
+    email: string;
+    valueInUSD: number;
+    redeemData: {
+        walletID: string;
+        interledgerWalletAddress: string;
+    };
+}
+
+export async function sendMoneyViaEmail(payments: PayWithEmail[], subAccount: string): Promise<any> {
   try {
-    const res = await fetch(`https://chi-api.vercel.app/api/v1/send-payment`, {
-      method: 'POST',
+    const apiKey = process.env.NEXT_PUBLIC_CHIMONEY_API_KEY;
+    if (!apiKey) {
+            throw new Error('Chi-Money API key not provided');
+    }
+    const res = await fetch(`${CHIMONEY_API_BASE_URL}/payouts/chimoney`, {
+    method: 'POST',
             headers: {
             'accept': 'application/json',
             'content-type': 'application/json',
+            'X-API-KEY': apiKey
      },
       body: JSON.stringify({
-                    email,
-                    valueInUSD
+        chimoneys: payments,
+        turnOffNotification: false,
+        subAccount,
       }),
     });
 
