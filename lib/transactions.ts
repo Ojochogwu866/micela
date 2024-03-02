@@ -67,7 +67,7 @@ interface Payment {
  */
 
 
-export async function sendMoney(payments: Payment[]): Promise<any> {
+export async function sendMoney(payments: Payment[], subAccount: string): Promise<any> {
   try {
     const apiKey = process.env.NEXT_PUBLIC_CHIMONEY_API_KEY;
     if (!apiKey) {
@@ -83,6 +83,7 @@ export async function sendMoney(payments: Payment[]): Promise<any> {
       body: JSON.stringify({
         chimoneys: payments,
         turnOffNotification: true,
+        subAccount,
       }),
     });
 
@@ -97,6 +98,35 @@ export async function sendMoney(payments: Payment[]): Promise<any> {
   }
 }
 
+export async function recieveMoney(payerEmail: string, valueInUSD: string): Promise<any> {
+  try {
+    const apiKey = process.env.NEXT_PUBLIC_CHIMONEY_API_KEY;
+    if (!apiKey) {
+            throw new Error('Chi-Money API key not provided');
+    }
+    const res = await fetch(`${CHIMONEY_API_BASE_URL}/payment/initiate`, {
+    method: 'POST',
+            headers: {
+            'accept': 'application/json',
+            'content-type': 'application/json',
+            'X-API-KEY': apiKey
+     },
+      body: JSON.stringify({
+        payerEmail,
+        valueInUSD
+      }),
+    });
+
+    if (!res.ok) {
+      throw new Error('Cant recieve money yet');
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error('Error getting paid money:', error);
+    throw new Error('Failed to recieve money');
+  }
+}
 
 /*
 *types Definition for payload

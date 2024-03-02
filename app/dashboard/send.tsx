@@ -4,12 +4,14 @@ import { Input } from '@/components/UI/input';
 import { Button } from '@/components/UI/button';
 import { searchUsers, sendMoney, sendMoneyViaEmail } from '@/lib/transactions';
 import { Alert } from '@/components/UI/alert';
+import { useAppContext } from '@/context';
 
 interface Wallet {
   id: string;
 }
 
 interface User {
+  id?:string;
   email?: string;
   phone?: string;
   wallets?: Wallet[];
@@ -26,6 +28,7 @@ interface Payment {
 }
 
 export const SendMoney = () => {
+  const { userData } = useAppContext();
   const [tab, setTab] = useState('otherUsers');
   const [searchQuery, setSearchQuery] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -65,6 +68,7 @@ const handleSendMoney = async (event: React.FormEvent<HTMLFormElement>) => {
   try {
     const user = searchResults[0]; 
     const walletID = user?.wallets?.[0]?.id || '';
+    const subAccount = userData?.id || '';
     const payments: Payment[] = [{
         email: user?.email || '',
         phone: user?.phone || '',
@@ -75,8 +79,7 @@ const handleSendMoney = async (event: React.FormEvent<HTMLFormElement>) => {
         },
     }];
 
-    const response = await sendMoney(payments);
-        await sendMoney(payments);
+    const response = await sendMoney(payments, subAccount);
         setAlertMessage('Money sent successfully!');
         console.log(response);
         setTimeout(() => {
