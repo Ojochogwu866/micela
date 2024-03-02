@@ -5,7 +5,7 @@ const CHIMONEY_API_BASE_URL = 'https://api-v2-sandbox.chimoney.io/v0.2';
  * @param searchTerm 
  * @returns 
  */
-export const searchUsers = async (searchTerm: string): Promise<{
+export const searchUsers = async (partialSearchTerm: string): Promise<{
     wallets: any; email: string; phone: string 
 }[]> => {
     try {
@@ -31,7 +31,7 @@ export const searchUsers = async (searchTerm: string): Promise<{
         if (Array.isArray(responseData.data)) {
             const subAccounts = responseData.data;
             const filteredUsers = subAccounts.filter((subAccount: any) => {
-                return subAccount.email === searchTerm || subAccount.phoneNumber === searchTerm;
+                return subAccount.email.startsWith(partialSearchTerm) || subAccount.phoneNumber.startsWith(partialSearchTerm);
             }).map((user: any) => ({
                 email: user.email,
                 phone: user.phoneNumber,

@@ -57,17 +57,12 @@ export const SendMoney = () => {
 const handleSearchInputChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const query = event.target.value.trim();
     setSearchQuery(query);
-    if (query !== '') {
-        try {
+    try {
         const results = await searchUsers(query);
         setSearchResults(results);
         setDropdownVisible(true); 
-        } catch (error) {
+    } catch (error) {
         console.error('Error searching for users:', error);
-        }
-    } else {
-        setSearchResults([]); 
-        setDropdownVisible(false); 
     }
 };
 
@@ -184,15 +179,15 @@ return (
                     value={searchQuery}
                     onChange={handleSearchInputChange}
                 />
-                <ul>
                     {dropdownVisible && searchResults.map((result, index) => (
+                      <ul className="max-h-[400px] overflow-y-scroll w-full bg-white p-5 relative" key={index}>
                         <li className='text-sm cursor-pointer w-full h-[46px] bg-gray-100  rounded-md p-2  font-normal' key={index}>
-                        <div onClick={() => handleDropdownItemClick(result)}>
-                            {result.email || result.phone}
-                        </div>
+                            <div onClick={() => handleDropdownItemClick(result)}>
+                                {result.email || result.phone}
+                            </div>
                         </li>
+                        </ul>
                     ))}
-                </ul>
                 </div>
                 <Input
                 placeholder='Amount'
