@@ -1,4 +1,4 @@
-import  React, {useEffect, useState} from 'react'
+import  React, { useState} from 'react'
 import { Input } from '@/components/UI/input';
 import { Button } from '@/components/UI/button';
 import { recieveMoney } from '@/lib/transactions';

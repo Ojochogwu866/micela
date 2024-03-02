@@ -5,7 +5,7 @@ import { Button } from '@/components/UI/button';
 import { searchUsers, sendMoney, sendMoneyViaEmail } from '@/lib/transactions';
 import { Alert } from '@/components/UI/alert';
 import { useAppContext } from '@/context';
-
+import { useRouter } from 'next/navigation'
 
 interface Wallet {
     id: string;
@@ -49,6 +49,7 @@ export const SendMoney = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter()
 
   const handleTabChange = (tab: string) => {
       setTab(tab);
@@ -93,8 +94,9 @@ const handleSendMoney = async (event: React.FormEvent<HTMLFormElement>) => {
             setSearchResults([]);
             setSelectedUser(null);
             setValueInUSD('');
-            setDropdownVisible(false);
+            setDropdownVisible(false);    
             setIsModalOpen(false);
+            router.push(`/dashboard/[id]/?isSubAccountId=${subAccount}`);
         }, 5000); 
     } catch (error) {
         console.error('Error sending money:', error);
@@ -125,6 +127,7 @@ const handleSendMoneyViaEmail = async (event: React.FormEvent<HTMLFormElement>) 
       setEmail('');
       setValueInUSD('');
       setIsModalOpen(false);
+      router.push(`/dashboard/[id]/?isSubAccountId=${subAccount}`);
     }, 5000);
   } catch (error) {
     console.error('Error sending money via email:', error);
@@ -181,7 +184,6 @@ return (
                 />
                     <ul>
                     {dropdownVisible && searchResults.map((result, index) => (
-                      
                         <li className='text-sm cursor-pointer w-full h-[46px] bg-gray-100  rounded-md p-2  font-normal' key={index}>
                             <div onClick={() => handleDropdownItemClick(result)}>
                                 {result.email || result.phone}
