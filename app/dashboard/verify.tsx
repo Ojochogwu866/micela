@@ -21,11 +21,12 @@ export const VerifyMoney = () => {
     setAlertMessage('Verified successfully!');
     console.log(response);
     setTimeout(() => {
-        setAlertMessage('Verified successfully!');        
+        setAlertMessage('');        
         setId('');
     }, 5000);
     } catch (error) {
-    console.error('Error Verifying:', error);
+        setAlertMessage('Payment not verifiable'); 
+        console.error('Error Verifying:', error);
     } finally {
             setAlertMessage(''); 
             setIsLoading(false); 

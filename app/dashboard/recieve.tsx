@@ -22,15 +22,17 @@ export const RecieveMoney = () => {
     setAlertMessage('Requets sent successfully!');
     console.log(response);
     setTimeout(() => {
-        setAlertMessage('Request sent successfully!');        
+        setAlertMessage('');        
         setEmail('');
         setValueInUSD('');
         setIsModalOpen(false);
     }, 5000);
     } catch (error) {
+         setAlertMessage('Requet Unsuccessfull!');
     console.error('Error sending money via email:', error);
     } finally {
-            setIsLoading(false); 
+        setAlertMessage('');    
+        setIsLoading(false); 
         }
 };
 

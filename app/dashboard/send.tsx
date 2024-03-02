@@ -92,6 +92,7 @@ const handleSendMoney = async (event: React.FormEvent<HTMLFormElement>) => {
         setTimeout(() => {
             setSearchQuery('');
             setSearchResults([]);
+            setAlertMessage('');
             setSelectedUser(null);
             setValueInUSD('');
             setDropdownVisible(false);    
@@ -103,6 +104,7 @@ const handleSendMoney = async (event: React.FormEvent<HTMLFormElement>) => {
         setAlertMessage('Error sending money. Please try again.');
         setIsModalOpen(false);
      } finally {
+            setAlertMessage('');
             setIsLoading(false); 
         }
 };
