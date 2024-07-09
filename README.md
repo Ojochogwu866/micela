@@ -1,14 +1,14 @@
-﻿CHIMONEY FULLSTACK
+Micela Pay
 ============
 
-This is a simple fullstack application built using express authentication and chimoney api, to send money to several users, recieve money from users via email, and also view transaction history. This repo is the frontend code and the API is found [here](https://github.com/Ojochogwu866/Chi_api).
+This is a simple fullstack application built using express authentication and chimoney api, to send money to several users, recieve money from users via email, and also view transaction history. Every integration is done using chimoney api. This repo is the frontend code and the API is found [here](https://github.com/Ojochogwu866/Chi_api).
 
 ![Dashboard Preview](https://imgur.com/a/G71BeUO)
 
 ---
 ## Challenges
 
-Had a bit of challenge working of this, some of which I feel I did not resolve. But in all, was a good run. Was so much of brainstorming involved with integrating with the API, and a couple of other stuufs I feel wasn't clear enough. I hope every time i gave this would be worth it :)
+You are free to make your ps's :)
 
 ---
 
