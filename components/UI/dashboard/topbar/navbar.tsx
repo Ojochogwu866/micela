@@ -17,7 +17,7 @@ const menuItems = [
                 path: '/settings',
                 icon: <SettingsSharp/>
             },
-             {
+            {
                 path: '/notifications',
                 icon: <NotificationsActiveSharpIcon/>
             }
@@ -39,7 +39,7 @@ export default function NavBar() {
                         placeholder='Search'
                     />
                 </div>
-                  {menuItems.map((cat, index) => (
+                {menuItems.map((cat, index) => (
                     <div key={index}>
                         {cat.topList && (
                             <ul className='flex gap-4' >

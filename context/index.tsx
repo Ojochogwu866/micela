@@ -1,6 +1,6 @@
 'use client'
 import { createContext, useState, useContext, useEffect } from "react";
-import {getUser} from '@/lib/getUser';
+import { getUser } from '@/lib/getUser';
 
 interface UserData {
     id: string;
@@ -39,7 +39,6 @@ interface UserData {
         }[];
     }[];
 }
-
 
 interface ContextType {
     userData: UserData | null;

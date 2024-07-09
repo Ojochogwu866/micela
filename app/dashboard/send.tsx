@@ -11,7 +11,9 @@ interface Wallet {
     id: string;
     type: string; 
 }
-
+interface SendMoneyProps {
+  fetchUserData: () => Promise<void>;
+}
 interface User {
   id?:string;
   email?: string;
@@ -37,7 +39,7 @@ interface PayEmail {
     interledgerWalletAddress: string;
   };
 }
-export const SendMoney = () => {
+export const SendMoney: React.FC<SendMoneyProps> = ({ fetchUserData }) => {
   const { userData } = useAppContext();
   const [tab, setTab] = useState('otherUsers');
   const [searchQuery, setSearchQuery] = useState('');
@@ -50,10 +52,7 @@ export const SendMoney = () => {
   const [alertMessage, setAlertMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter()
-
-  const handleTabChange = (tab: string) => {
-      setTab(tab);
-  };
+  const handleTabChange = (tab: string) => {setTab(tab)};
 
 const handleSearchInputChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const query = event.target.value.trim();
@@ -67,7 +66,6 @@ const handleSearchInputChange = async (event: React.ChangeEvent<HTMLInputElement
     }
 };
 
-  
 const handleSendMoney = async (event: React.FormEvent<HTMLFormElement>) => {
   event.preventDefault();
   setIsLoading(true);
@@ -88,6 +86,7 @@ const handleSendMoney = async (event: React.FormEvent<HTMLFormElement>) => {
 
     const response = await sendMoney(payments, subAccount);
         setAlertMessage('Money sent successfully!');
+         await fetchUserData();
         console.log(response);
         setTimeout(() => {
             setSearchQuery('');

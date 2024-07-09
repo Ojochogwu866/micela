@@ -6,7 +6,7 @@ import "./globals.css";
 const raleway = Raleway({ subsets: ["cyrillic"]})
 
 export const metadata: Metadata = {
-  title: "Chimoney Pay",
+  title: "Micela Pay",
   description: "Send Money to users using email and phone number",
 };
 
